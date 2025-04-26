@@ -1,0 +1,275 @@
+:root {
+  /* Font sizes */
+  --font-logo: 46px;
+  --font-header: 22px;
+  --font-title: 16px;
+  --font-primary: 14px;
+  --font-secondary: 10px;
+
+  /* Colors */
+  --color-primary: #121212;
+  --color-secondary: #5a5a5a;
+
+  /* Padding & Margins */
+  --large-spacer: 32px;
+  --medium-spacer: 24px;
+  --small-spacer: 16px;
+}
+
+/* Custom Font Families
+    https://www.freefontdownload.org/en/engravers-old-english-bt.font
+    https://github.com/FrancesCoronel/nyt-comm/blob/master/fonts/franklin/franklin-normal-700.ttf
+    https://stackoverflow.com/questions/24990554/how-to-include-a-font-ttf-using-css
+*/
+@font-face {
+  font-family: 'Engravers Old English BT';
+  src: url(fonts/engravers-old-english-bt.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'NYT Franklin';
+  src: url(fonts/franklin-normal-700.ttf) format('truetype');
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  font-size: var(--font-primary);
+  color: var(--color-primary);
+  text-decoration: none;
+  line-height: 1.75rem;
+  font-family: 'NYT Franklin', sans-serif;
+}
+
+button {
+  cursor: pointer;
+}
+
+.homepage {
+  display: grid;
+  grid-template-rows: auto;
+  justify-items: center;
+  row-gap: 40px;
+
+  padding: 2% 0 3% 0;
+}
+
+/* When small enough, use column & "order" to make title on top, navbarLeft second, and navbarRight third*/
+.navbar {
+  width: 100%;
+  max-width: 1600px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 3% 2% 3%;
+
+  border-bottom: 2px solid black;
+}
+
+.navbarLeft {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+
+  > a {
+    width: fit-content;
+  }
+}
+
+.navbarTitle {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 2;
+
+  font-family: 'Engravers Old English BT', sans-serif;
+  font-size: var(--font-logo);
+  text-align: center;
+}
+
+.navbarRight {
+  height: 100%;
+  display: flex;
+  justify-content: flex-end;
+  flex: 1;
+}
+
+/* 3 columns -> 2 columns -> 1 column */
+.articles {
+  width: 100%;
+  max-width: 1600px;
+  padding: 0 3%;
+
+  display: grid;
+  justify-items: center;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.article,
+.articleImageContainer,
+.articleContent {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.article {
+  width: 100%;
+  padding: 24px;
+}
+
+.article:not(:nth-child(3n + 1)) {
+  border-left: 0.5px solid var(--color-secondary);
+}
+
+.article:not(:nth-last-child(-n + 3)) {
+  border-bottom: 0.5px solid var(--color-secondary);
+}
+
+.articleImageContainer {
+  gap: 0px;
+}
+
+.articleImageCopyright {
+  align-self: flex-end;
+  font-size: var(--font-secondary);
+  color: var(--color-secondary);
+}
+
+.articleImage {
+  width: 100%;
+  height: auto;
+  border-radius: 2px;
+}
+
+.articleTitle {
+  font-size: var(--font-header);
+}
+
+.articleAbstract {
+  color: var(--color-secondary);
+}
+
+.footer {
+  width: 100%;
+  max-width: 1600px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 2% 3% 0 3%;
+
+  border-top: 2px solid black;
+}
+
+.footerTitle {
+  font-family: 'Engravers Old English BT', sans-serif;
+  font-size: 28px;
+  letter-spacing: -0.05rem;
+}
+
+.footerContent {
+  display: flex;
+}
+
+.footerSection {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  gap: 8px;
+}
+
+.footerSectionLinks {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  > p {
+    color: var(--color-secondary);
+  }
+}
+
+.hide {
+  display: none;
+}
+
+@media only screen and (max-width: 1024px) {
+  .homepage {
+    row-gap: 24px;
+  }
+  .articles {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .article:not(:nth-child(3n + 1)),
+  .article:not(:nth-last-child(-n + 3)) {
+    border: none;
+  }
+
+  .article:not(:nth-child(2n + 1)) {
+    border-left: 0.5px solid var(--color-secondary);
+  }
+
+  .article:not(:nth-last-child(-n + 2)) {
+    border-bottom: 0.5px solid var(--color-secondary);
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .homepage {
+    row-gap: 16px;
+  }
+
+  .articles {
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  .article:not(:nth-child(2n + 1)),
+  .article:not(:nth-last-child(-n + 2)) {
+    border: none;
+  }
+
+  .article:not(:nth-last-child(-n + 1)) {
+    border-bottom: 0.5px solid var(--color-secondary);
+  }
+
+  .navbar {
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    padding-top: 3%;
+  }
+
+  .navbarLeft {
+    order: 2;
+    text-align: center;
+    align-items: center;
+  }
+
+  .navbarTitle {
+    order: 1;
+    width: 100%;
+  }
+
+  .navbarRight {
+    order: 3;
+    justify-content: center;
+  }
+
+  .article,
+  .articleContent {
+    gap: 2px;
+  }
+
+  .footer, .footerContent {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .footerSectionLinks > p {
+    display: none;
+  }
+}

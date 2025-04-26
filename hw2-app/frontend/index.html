@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<script>
+  import './script.js';
+</script>
+
+<html lang="en">
+  <!-- Meta Data -->
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>New York Times Clone</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="homepage">
+      <!-- Header has date, title, & stock-->
+      <header class="navbar">
+        <section class="navbarLeft">
+          <h2 class="navbarDate">Wednesday, April 9, 2025</h2>
+          <a href="https://www.nytimes.com/section/todayspaper">
+            <p>Today's Paper</p>
+          </a>
+        </section>
+        <h1 class="navbarTitle">The New York Times</h1>
+        <section class="navbarRight">
+          <h2>Stocks</h2>
+        </section>
+      </header>
+
+      <!-- Main: load articles from NYT API into here, which is why it is empty -->
+      <main class="articles"></main>
+
+      <!-- Footer: No links added + contains some names of pages the footer leads to -->
+      <footer class="footer">
+        <h2 class="footerTitle">The New York Times</h2>
+        <div class="footerContent">
+          <section class="footerSection">
+            <h3>NEWS</h3>
+            <div class="footerSectionLinks">
+              <p>Home Page</p>
+              <p>U.S.</p>
+              <p>World</p>
+            </div>
+          </section>
+          <section class="footerSection">
+            <h3>ARTS</h3>
+            <div class="footerSectionLinks">
+              <p>Dance</p>
+              <p>Movies</p>
+              <p>Music</p>
+              <p>Visual Arts</p>
+            </div>
+          </section>
+          <section class="footerSection">
+            <h3>LIFESTYLE</h3>
+            <div class="footerSectionLinks">
+              <p>Food</p>
+              <p>Health</p>
+              <p>Travel</p>
+              <p>Fashion</p>
+            </div>
+          </section>
+          <section class="footerSection">
+            <h3>OPINION</h3>
+            <div class="footerSectionLinks">
+              <p>Opinion</p>
+              <p>Editorials</p>
+              <p>Op-Ed</p>
+              <p>Letters</p>
+            </div>
+          </section>
+          <section class="footerSection">
+            <h3>MORE</h3>
+            <div class="footerSectionLinks">
+              <p>Games</p>
+              <p>Cooking</p>
+              <p>Live Events</p>
+            </div>
+          </section>
+        </div>
+      </footer>
+    </div>
+  </body>
+</html>
