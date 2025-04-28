@@ -1,7 +1,7 @@
 <script lang="ts">
-  import Navbar from './components/navbar/navbar.svelte';
-  import Footer from './components/footer/footer.svelte';
-  import initialSetup from './initialSetup';
+  import Navbar from './lib/components/navbar/navbar.svelte';
+  import Footer from './lib/components/footer/footer.svelte';
+  import initialSetup from './lib/helpers/initialSetup';
   import './app.css';
 
   window.addEventListener('load', initialSetup);

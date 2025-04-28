@@ -1,13 +1,12 @@
+import getAPIKey from './getAPIKey';
+import getArticles from './getArticles';
+
 export default async function initialSetup() {
   // make call to backend to get API key
-  const API_KEY_QUERY_URL = 'http://localhost:8000/api/key';
-  const API_KEY = await fetch(API_KEY_QUERY_URL).then((res) => res.json()).then((data) => data.apiKey);
-  console.log(API_KEY);
+  const API_KEY = await getAPIKey();
 
   // query the NYT Article Search API for UC Davis articles
-  const queryURL = `https://api.nytimes.com/svc/search/v2/articlesearch.json?q=%22UC%20Davis%22%20OR%20%22University%20of%20California%2C%20Davis%22&begin_date=20240101&end_date=20250426&api-key=${API_KEY}`;
-  const data = await fetch(queryURL).then((res) => res.json()).then((data) => data.response.docs);
-  console.log(data);
+  const data = await getArticles(API_KEY);
 
   // extract numArticles of articles from data or less if not enough articles
   const numArticles = 12;
