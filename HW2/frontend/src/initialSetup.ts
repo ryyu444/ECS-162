@@ -1,8 +1,4 @@
-'use strict';
-
-window.addEventListener('load', setup);
-
-async function setup() {
+export default async function initialSetup() {
   // make call to backend to get API key
   const API_KEY_QUERY_URL = 'http://localhost:8000/api/key';
   const API_KEY = await fetch(API_KEY_QUERY_URL).then((res) => res.json()).then((data) => data.apiKey);
@@ -18,7 +14,7 @@ async function setup() {
   const articles = data.slice(0, Math.min(numArticles, data.length));
 
   // create & set the article elements
-  const articleElements = articles.map((article) => {
+  const articleElements = articles.map((article: HTMLElement) => {
     return createArticleElement(article);
   });
   
@@ -33,11 +29,12 @@ async function setup() {
     day: 'numeric',
     year: 'numeric',
   });
+
   window.document.querySelector('.navbarDate').innerHTML =
     day + ', ' + dateString;
 }
 
-function createArticleElement(article) {
+function createArticleElement(article: any) {
   // create the article element (a tag to redirect to article)
   const articleElement = document.createElement('a');
   articleElement.href = article.web_url;
