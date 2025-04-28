@@ -1,9 +1,6 @@
 from flask import Flask, jsonify, send_from_directory
 import os
 from flask_cors import CORS
-from dotenv import load_dotenv
-
-load_dotenv()
 
 app = Flask(__name__, static_folder="static", template_folder="templates")
 CORS(app)

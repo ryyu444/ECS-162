@@ -3,23 +3,25 @@
 window.addEventListener('load', setup);
 
 async function setup() {
-  // make call to NYT API to get top stories
+  // make call to backend to get API key
   const API_KEY_QUERY_URL = 'http://localhost:8000/api/key';
   const API_KEY = await fetch(API_KEY_QUERY_URL).then((res) => res.json()).then((data) => data.apiKey);
   console.log(API_KEY);
-  
+
+  // query the NYT Article Search API for UC Davis articles
   const queryURL = `https://api.nytimes.com/svc/search/v2/articlesearch.json?q=%22UC%20Davis%22%20OR%20%22University%20of%20California%2C%20Davis%22&begin_date=20240101&end_date=20250426&api-key=${API_KEY}`;
   const data = await fetch(queryURL).then((res) => res.json()).then((data) => data.response.docs);
   console.log(data);
 
-  // extract numArticles of articles from data
+  // extract numArticles of articles from data or less if not enough articles
   const numArticles = 12;
   const articles = data.slice(0, Math.min(numArticles, data.length));
 
   // create & set the article elements
   const articleElements = articles.map((article) => {
     return createArticleElement(article);
-  });``
+  });
+  
   window.document.querySelector('.articles').innerHTML =
     articleElements.join('');
 
