@@ -6,11 +6,11 @@ export default async function initialSetup() {
   const API_KEY = await getAPIKey();
 
   // query the NYT Article Search API for UC Davis articles
-  const data = await getArticles(API_KEY);
+  const docs = await getArticles(API_KEY).then((d) => d.response.docs);
 
-  // extract numArticles of articles from data or less if not enough articles
+  // extract numArticles of articles from docs or less if not enough articles
   const numArticles = 12;
-  const articles = data.slice(0, Math.min(numArticles, data.length));
+  const articles = docs.slice(0, Math.min(numArticles, docs.length));
 
   // create & set the article elements
   const articleElements = articles.map((article: HTMLElement) => {
@@ -43,7 +43,7 @@ function createArticleElement(article: any) {
   articleElement.innerHTML = `
         <div class="articleImageContainer">
             <img class="articleImage" src="${article.multimedia.default.url}" alt="${
-    article.title
+    article.multimedia.caption
   }">
             <p class="articleImageCopyright">${
               article.multimedia.credit
