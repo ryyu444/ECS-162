@@ -1,22 +1,22 @@
-'use strict';
+import getAPIKey from './getAPIKey';
+import getArticles from './getArticles';
 
-window.addEventListener('load', setup);
+export default async function initialSetup() {
+  // make call to backend to get API key
+  const API_KEY = await getAPIKey();
 
-async function setup() {
-  // make call to NYT API to get top stories
-  const API_KEY = '';
-  const queryURL = `https://api.nytimes.com/svc/topstories/v2/home.json?api-key=${API_KEY}`;
-  const res = await fetch(queryURL);
-  const data = await res.json();
+  // query the NYT Article Search API for UC Davis articles
+  const docs = await getArticles(API_KEY).then((d) => d.response.docs);
 
-  // extract numArticles of articles from data
+  // extract numArticles of articles from docs or less if not enough articles
   const numArticles = 12;
-  const articles = data.results.slice(0, numArticles);
+  const articles = docs.slice(0, Math.min(numArticles, docs.length));
 
   // create & set the article elements
-  const articleElements = articles.map((article) => {
+  const articleElements = articles.map((article: HTMLElement) => {
     return createArticleElement(article);
   });
+  
   window.document.querySelector('.articles').innerHTML =
     articleElements.join('');
 
@@ -28,30 +28,31 @@ async function setup() {
     day: 'numeric',
     year: 'numeric',
   });
+
   window.document.querySelector('.navbarDate').innerHTML =
     day + ', ' + dateString;
 }
 
-function createArticleElement(article) {
+function createArticleElement(article: any) {
   // create the article element (a tag to redirect to article)
   const articleElement = document.createElement('a');
-  articleElement.href = article.url;
+  articleElement.href = article.web_url;
   articleElement.classList.add('article');
 
   // set html to article contents: image, title, abstract
   articleElement.innerHTML = `
         <div class="articleImageContainer">
-            <img class="articleImage" src="${article.multimedia[1].url}" alt="${
-    article.title
+            <img class="articleImage" src="${article.multimedia.default.url}" alt="${
+    article.multimedia.caption
   }">
             <p class="articleImageCopyright">${
-              article.multimedia[1].copyright
-                ? article.multimedia[1].copyright
+              article.multimedia.credit
+                ? article.multimedia.credit
                 : 'The New York Times'
             }</p>
         </div>
         <div class="articleContent">
-            <h2 class="articleTitle">${article.title}</h2>
+            <h2 class="articleTitle">${article.headline.main}</h2>
             <p class="articleAbstract">${article.abstract}</p>
         </div>
     `;
