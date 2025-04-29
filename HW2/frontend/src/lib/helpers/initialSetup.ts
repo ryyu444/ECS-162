@@ -43,7 +43,7 @@ function createArticleElement(article: any) {
   articleElement.innerHTML = `
         <div class="articleImageContainer">
             <img class="articleImage" src="${article.multimedia.default.url}" alt="${
-    article.title
+    article.multimedia.caption
   }">
             <p class="articleImageCopyright">${
               article.multimedia.credit
