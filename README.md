@@ -6,30 +6,30 @@ This project utilizes a Flask backend and Svelte frontend to mimic the New York 
 ## Installation and Usage
 1. Clone the repository.
 ```
-git clone  ...
+git clone https://github.com/ryyu444/ECS-162.git
 ```
-2. Build and start docker container.
+2. Install necessary files.
+```
+npm install
+```
+3. Build and start docker container inside HW2 directory.
 ```
 docker-compose up --build
 ```
-3. Start project.
+4. Start project in frontend folder.
 ```
 npm run dev
 ```
-4. Navigate to generated localhost link.
+5. Navigate to generated localhost link.
 
 ## Testing
 ### Backend Testing
-The following command tests the backend route to get the API key.
+The following command tests the backend route to get the API key and should be run from the backend test folder.
 ```
 pytest
 ```
 ### Frontend Testing
-We used Jest for Frontend Testing. Use the following command to install jest before testing.
-```
-npm install --save-dev ts-jest
-```
-The following command tests calls to the NYT API.
+The following command tests calls to the NYT API and should be run from the frontend test folder.
 ```
 npm test
 ```
