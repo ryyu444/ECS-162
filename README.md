@@ -1,35 +1,35 @@
-# ECS-162 Homework 2 - New York Times Webpage Clone
+# ECS-162 Homework 2: New York Times Webpage Clone
 
 ## Description
 This project utilizes a Flask backend and Svelte frontend to mimic the New York Times frontpage. It displays news stories related to UC Davis.
 
 ## Installation and Usage
-1. Clone the repository.
+1. Clone the repository in your desired folder.
 ```
 git clone https://github.com/ryyu444/ECS-162.git
 ```
-2. Install necessary files.
+2. Navigate to frontend and install necessary files.
 ```
-npm install
+cd ./frontend + npm install
 ```
-3. Build and start docker container inside HW2 directory.
+3. Open a new terminal, navigate to HW2, and run the following docker command.
 ```
-docker-compose up --build
+docker-compose -f docker-compose.dev.yml up --build
 ```
-4. Start project in frontend folder.
+4. Go back to your terminal that is in frontend. Start the Svelte app with:
 ```
 npm run dev
 ```
-5. Navigate to generated localhost link.
+5. Navigate to generated localhost link and explore!
 
 ## Testing
 ### Backend Testing
-The following command tests the backend route to get the API key and should be run from the backend test folder.
+To execute unit tests for the backend, navigate to the backend folder and running the following command:
 ```
 pytest
 ```
 ### Frontend Testing
-The following command tests calls to the NYT API and should be run from the frontend test folder.
+To execute unit tests for the frontend, navigate to the frontend folder and run the following command:
 ```
 npm test
 ```
@@ -39,4 +39,4 @@ npm test
 2. James Fu
 
 ## License
-MIT Lcense
+MIT License
