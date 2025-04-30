@@ -1,6 +1,6 @@
 from flask import Flask, jsonify, send_from_directory
-import os
 from flask_cors import CORS
+import os
 
 static_path = os.getenv('STATIC_PATH','static')
 template_path = os.getenv('TEMPLATE_PATH','templates')
