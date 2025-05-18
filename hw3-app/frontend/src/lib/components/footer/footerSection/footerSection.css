@@ -1,0 +1,22 @@
+.footerSection {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  gap: 8px;
+}
+
+.footerSectionLinks {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  > p {
+    color: var(--color-secondary);
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .footerSectionLinks > p {
+    display: none;
+  }
+}
