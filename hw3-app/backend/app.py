@@ -1,30 +1,17 @@
-from flask import Flask, redirect, url_for, session, jsonify, send_from_directory
+from flask import Flask, redirect, request, session, jsonify
+from flask_cors import CORS
+from pymongo import MongoClient
 from authlib.integrations.flask_client import OAuth
 from authlib.common.security import generate_token
+from bson import ObjectId
 import os
 
-static_path = os.getenv('STATIC_PATH','static')
-template_path = os.getenv('TEMPLATE_PATH','templates')
-
-app = Flask(__name__, static_folder=static_path, template_folder=template_path)
+app = Flask(__name__)
+CORS(app, supports_credentials=True, origins=["http://localhost:5173"])
 app.secret_key = os.urandom(24)
 
-@app.route('/api/key')
-def get_key():
-    return jsonify({'apiKey': os.getenv('NYT_API_KEY')})
-
-@app.route('/')
-@app.route('/<path:path>')
-def serve_frontend(path=''):
-    if path != '' and os.path.exists(os.path.join(static_path,path)):
-        return send_from_directory(static_path, path)
-    return send_from_directory(template_path, 'index.html')
-
-
 oauth = OAuth(app)
-
 nonce = generate_token()
-
 
 oauth.register(
     name=os.getenv('OIDC_CLIENT_NAME'),
@@ -38,6 +25,12 @@ oauth.register(
     device_authorization_endpoint="http://dex:5556/device/code",
     client_kwargs={'scope': 'openid email profile'}
 )
+
+# MongoDB connection
+MONGO_DB_URI = os.getenv('MONGO_URI')
+client = MongoClient(MONGO_DB_URI)
+db = client['mydatabase']
+collection = db['comments']
 
 @app.route('/')
 def home():
@@ -59,12 +52,44 @@ def authorize():
 
     user_info = oauth.flask_app.parse_id_token(token, nonce=nonce)  # or use .get('userinfo').json()
     session['user'] = user_info
-    return redirect('/')
+    redirect_uri = 'http://localhost:5173/'
+    return redirect(redirect_uri)
 
 @app.route('/logout')
 def logout():
     session.clear()
-    return redirect('/')
+    redirect_uri = 'http://localhost:5173/'
+    return redirect(redirect_uri)
+
+@app.route('/api/comments', methods=['GET'])
+def get_comments():
+    comments = list(collection.find())
+    for comment in comments:
+        comment['_id'] = str(comment['_id'])
+    return jsonify(comments)
+
+@app.route('/api/comments', methods=['POST'])
+def post_comment():
+    comment = request.json
+    result = collection.insert_one(comment)
+    comment['_id'] = str(result.inserted_id)
+    return jsonify(comment), 201
+
+@app.route('/api/comments/<comment_id>', methods=['DELETE'])
+def delete_comment(comment_id):
+    result = collection.delete_one({'_id': ObjectId(comment_id)})
+    if result.deleted_count == 1:
+        return jsonify({'message': 'Comment deleted'}), 200
+    return jsonify({'error': 'Comment not found'}), 404
+
+@app.route('/api/session')
+def get_session():
+    user = session.get("user")
+    return jsonify({'user': user if user else None})
+
+@app.route('/api/key')
+def get_key():
+    return jsonify({'apiKey': os.getenv('NYT_API_KEY')})
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=8000)

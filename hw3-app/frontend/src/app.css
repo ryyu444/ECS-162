@@ -43,11 +43,14 @@
 }
 
 button {
+  background: none;
+  border: none;
   cursor: pointer;
 }
 
 .homepage {
   display: grid;
+  position: relative;
   grid-template-rows: auto;
   justify-items: center;
   row-gap: 40px;
@@ -55,108 +58,22 @@ button {
   padding: 2% 0 3% 0;
 }
 
-/* 3 columns -> 2 columns -> 1 column */
-.articles {
-  width: 100%;
-  max-width: 1600px;
-  padding: 0 3%;
-
-  display: grid;
-  justify-items: center;
-  grid-template-columns: repeat(3, 1fr);
-}
-
-.article,
-.articleImageContainer,
-.articleContent {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-
-.article {
-  width: 100%;
-  padding: 24px;
-}
-
-.article:not(:nth-child(3n + 1)) {
-  border-left: 0.5px solid var(--color-secondary);
-}
-
-.article:not(:nth-last-child(-n + 3)) {
-  border-bottom: 0.5px solid var(--color-secondary);
-}
-
-.articleImageContainer {
-  gap: 0px;
-}
-
-.articleImageCopyright {
-  align-self: flex-end;
-  font-size: var(--font-secondary);
-  color: var(--color-secondary);
-}
-
-.articleImage {
-  width: 100%;
-  height: auto;
-  border-radius: 2px;
-}
-
-.articleTitle {
-  font-size: var(--font-header);
-}
-
-.articleAbstract {
-  color: var(--color-secondary);
-}
-
 .hide {
   display: none;
+}
+
+.no-scroll {
+  overflow: hidden;
 }
 
 @media only screen and (max-width: 1024px) {
   .homepage {
     row-gap: 24px;
   }
-  .articles {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .article:not(:nth-child(3n + 1)),
-  .article:not(:nth-last-child(-n + 3)) {
-    border: none;
-  }
-
-  .article:not(:nth-child(2n + 1)) {
-    border-left: 0.5px solid var(--color-secondary);
-  }
-
-  .article:not(:nth-last-child(-n + 2)) {
-    border-bottom: 0.5px solid var(--color-secondary);
-  }
 }
 
 @media only screen and (max-width: 768px) {
   .homepage {
     row-gap: 16px;
-  }
-
-  .articles {
-    grid-template-columns: repeat(1, 1fr);
-  }
-
-  .article:not(:nth-child(2n + 1)),
-  .article:not(:nth-last-child(-n + 2)) {
-    border: none;
-  }
-
-  .article:not(:nth-last-child(-n + 1)) {
-    border-bottom: 0.5px solid var(--color-secondary);
-  }
-
-  .article,
-  .articleContent {
-    gap: 2px;
   }
 }

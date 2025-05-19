@@ -1,10 +1,20 @@
 <script lang="ts">
   import './navbar.css';
-  import Button from "./Button.svelte"
+  import User from './components/User.svelte';
   let {
     navbarTitle = 'The New York Times',
-    navbarDate = 'Wednesday, May 17, 2025',
   } = $props();
+
+  // set date
+  const date = new Date();
+  const day = date.toLocaleString('en-us', { weekday: 'long' });
+  const dateString = date.toLocaleDateString('en-us', {
+    month: 'long',
+    day: 'numeric',
+    year: 'numeric',
+  });
+
+  let navbarDate = day + ', ' + dateString;
 </script>
 
 <header class="navbar">
@@ -16,6 +26,6 @@
   </section>
   <h1 class="navbarTitle">{navbarTitle}</h1>
   <section class="navbarRight">
-    <Button variant="nyt">Sign In</Button>
+    <User />
   </section>
 </header>

@@ -1,10 +1,10 @@
 <script lang="ts">
+  import AuthContext from './lib/context/AuthContext.svelte';
   import Navbar from './lib/components/navbar/navbar.svelte';
+  import Articles from './lib/components/articles/Articles.svelte';
   import Footer from './lib/components/footer/footer.svelte';
-  import initialSetup from './lib/helpers/initialSetup';
   import './app.css';
 
-  window.addEventListener('load', initialSetup);
 </script>
 
 <svelte:head>
@@ -14,12 +14,14 @@
 </svelte:head>
 
 <div class="homepage">
-  <!-- Header has date, title, & stock-->
-  <Navbar />
+  <AuthContext>
+    <!-- Header has date, title, & stock-->
+    <Navbar />
 
-  <!-- Main: load articles from NYT API into here, which is why it is empty -->
-  <main class="articles"></main>
+    <!-- Main: load articles from NYT API into here, which is why it is empty -->
+    <Articles />
 
-  <!-- Footer: No links added + contains some names of pages the footer leads to -->
-  <Footer footerTitle="The New York Times" />
+    <!-- Footer: No links added + contains some names of pages the footer leads to -->
+    <Footer footerTitle="The New York Times" />
+  </AuthContext>
 </div>
