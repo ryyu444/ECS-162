@@ -1,0 +1,80 @@
+.loginButton {
+  color: white;
+  background-color: #537dac;
+  padding: 4px 12px;
+  font-weight: 600;
+  border-radius: 4px;
+}
+
+.accountDropdown {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  border: none;
+  background: none;
+
+  > p {
+    font-size: 1rem;
+    font-weight: bold;
+  }
+}
+
+.accountBackground {
+  position: fixed;
+  display: flex;
+  justify-content: flex-end;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  transition: all 0.5s ease-in-out;
+  backdrop-filter: brightness(0.5);
+  z-index: 1000;
+}
+
+.accountSideBar {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  height: 100vh;
+  max-width: 350px;
+  background-color: white;
+}
+
+.open {
+  width: 100%;
+}
+
+.accountSideBarHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24px 16px;
+  border-bottom: 1px solid grey;
+
+  > h2 {
+    font-size: 1.25rem;
+  }
+}
+
+.accountSideBarContent {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  > p {
+    font-size: 1.5rem;
+    padding: 16px;
+    font-weight: 600;
+  }
+}
+
+.logoutButton {
+    align-self: flex-start;
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-left: 32px;
+    margin-bottom: 64px;
+    text-decoration: underline;
+}

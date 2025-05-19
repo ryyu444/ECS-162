@@ -1,0 +1,155 @@
+.commentsContainer {
+  align-self: flex-end;
+}
+
+.commentsButton {
+  width: fit-content;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  border: 1px solid grey;
+  border-radius: 8px;
+  margin-right: 24px;
+  padding: 8px 16px;
+
+  > p {
+    font-size: 1rem;
+    font-weight: 500;
+  }
+}
+
+.commentsBackground {
+  position: fixed;
+  display: flex;
+  justify-content: flex-end;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  transition: all 0.5s ease-in-out;
+  backdrop-filter: brightness(0.5);
+  z-index: 1000;
+}
+
+.commentsSideBar {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  height: 100vh;
+  max-width: 400px;
+  width: 0;
+  background-color: white;
+}
+
+.open {
+  width: 100%;
+}
+
+.commentsSideBarTitle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24px 16px;
+  border-bottom: 1px solid grey;
+
+  > h2 {
+    font-size: 1.25rem;
+  }
+}
+
+.commentsHeader > h1 {
+  font-size: 2.5rem;
+  padding: 16px;
+}
+
+.commentForm {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.commentFormInput {
+  width: calc(100% - 16px);
+  padding: 12px 8px;
+  border: 1px solid grey;
+}
+
+.commentFormButtons {
+  display: flex;
+  width: calc(100% - 16px);
+  gap: 8px;
+  justify-content: flex-end;
+}
+
+.cancelButton {
+  border: 1px black solid;
+  padding: 2px 12px;
+  border-radius: 4px;
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+.submitButton {
+  border: 1px #537dac solid;
+  padding: 2px 12px;
+  border-radius: 4px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: white;
+  background-color: #537dac;
+}
+
+.commentsList {
+  overflow: hidden;
+}
+
+.comment {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 24px;
+  gap: 24px;
+}
+
+.commentContent {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.commentUser {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  > p {
+    font-weight: bold;
+    font-size: 1.25rem;
+  }
+}
+
+.commentText {
+  font-size: 1.5rem;
+  text-wrap: wrap;
+}
+
+.commentActions {
+  display: flex;
+  justify-content: space-between;
+}
+
+.deleteButton {
+  width: fit-content;
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: grey;
+}
+
+.replyButton {
+  width: fit-content;
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: #537dac;
+}
