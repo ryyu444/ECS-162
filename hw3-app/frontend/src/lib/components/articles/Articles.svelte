@@ -2,7 +2,7 @@
   import getAPIKey from '../../helpers/getAPIKey';
   import getArticles from '../../helpers/getArticles';
   import getComments from '../../helpers/getComments';
-  import Comments from './components/Comments.svelte';
+  import Comments from './comments/Comments.svelte';
   import './Articles.css';
 
   let fetchArticles = async () => {

@@ -1,6 +1,6 @@
 <script lang="ts">
   import './navbar.css';
-  import User from './components/User.svelte';
+  import User from './user/User.svelte';
   let {
     navbarTitle = 'The New York Times',
   } = $props();
@@ -23,7 +23,7 @@
     <a href="https://www.nytimes.com/section/todayspaper">
       <p>Today's Paper</p>
     </a>
-  </section>
+  </section>./user/User.svelte
   <h1 class="navbarTitle">{navbarTitle}</h1>
   <section class="navbarRight">
     <User />
