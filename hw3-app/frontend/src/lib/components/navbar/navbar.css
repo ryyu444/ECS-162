@@ -1,0 +1,67 @@
+/* When small enough, use column & "order" to make title on top, navbarLeft second, and navbarRight third*/
+.navbar {
+  width: 100%;
+  max-width: 1600px;
+  position: sticky;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 3% 2% 3%;
+
+  border-bottom: 2px solid black;
+}
+
+.navbarLeft {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+
+  > a {
+    width: fit-content;
+  }
+}
+
+.navbarTitle {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 2;
+
+  font-family: 'Engravers Old English BT', sans-serif;
+  font-size: var(--font-logo);
+  text-align: center;
+}
+
+.navbarRight {
+  height: 100%;
+  display: flex;
+  justify-content: flex-end;
+  flex: 1;
+}
+
+@media only screen and (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    padding-top: 3%;
+  }
+
+  .navbarLeft {
+    order: 2;
+    text-align: center;
+    align-items: center;
+  }
+
+  .navbarTitle {
+    order: 1;
+    width: 100%;
+  }
+
+  .navbarRight {
+    order: 3;
+    justify-content: center;
+  }
+}

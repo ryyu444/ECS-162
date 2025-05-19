@@ -1,0 +1,29 @@
+.footer {
+  width: 100%;
+  max-width: 1600px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 2% 3% 0 3%;
+
+  border-top: 2px solid black;
+}
+
+.footerTitle {
+  font-family: 'Engravers Old English BT', sans-serif;
+  font-size: 28px;
+  letter-spacing: -0.05rem;
+}
+
+.footerContent {
+  display: flex;
+}
+
+@media only screen and (max-width: 768px) {
+  .footer,
+  .footerContent {
+    flex-direction: column;
+    gap: 16px;
+  }
+}

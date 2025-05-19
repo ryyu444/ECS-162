@@ -1,0 +1,79 @@
+:root {
+  /* Font sizes */
+  --font-logo: 46px;
+  --font-header: 22px;
+  --font-title: 16px;
+  --font-primary: 14px;
+  --font-secondary: 10px;
+
+  /* Colors */
+  --color-primary: #121212;
+  --color-secondary: #5a5a5a;
+
+  /* Padding & Margins */
+  --large-spacer: 32px;
+  --medium-spacer: 24px;
+  --small-spacer: 16px;
+}
+
+/* Custom Font Families
+    https://www.freefontdownload.org/en/engravers-old-english-bt.font
+    https://github.com/FrancesCoronel/nyt-comm/blob/master/fonts/franklin/franklin-normal-700.ttf
+    https://stackoverflow.com/questions/24990554/how-to-include-a-font-ttf-using-css
+*/
+@font-face {
+  font-family: 'Engravers Old English BT';
+  src: url(fonts/engravers-old-english-bt.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'NYT Franklin';
+  src: url(fonts/franklin-normal-700.ttf) format('truetype');
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  font-size: var(--font-primary);
+  color: var(--color-primary);
+  text-decoration: none;
+  line-height: 1.75rem;
+  font-family: 'NYT Franklin', sans-serif;
+}
+
+button {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.homepage {
+  display: grid;
+  position: relative;
+  grid-template-rows: auto;
+  justify-items: center;
+  row-gap: 40px;
+
+  padding: 2% 0 3% 0;
+}
+
+.hide {
+  display: none;
+}
+
+.no-scroll {
+  overflow: hidden;
+}
+
+@media only screen and (max-width: 1024px) {
+  .homepage {
+    row-gap: 24px;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .homepage {
+    row-gap: 16px;
+  }
+}
