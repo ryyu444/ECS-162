@@ -27,6 +27,14 @@
     document.body.classList.remove('no-scroll');
   });
 
+  function clearComment(e: any) {
+    e.preventDefault();
+    const commentInput = e.target
+      .closest('.commentForm')
+      .querySelector('.commentFormInput');
+    commentInput.value = '';
+  }
+
   async function createComment(e: any) {
     e.preventDefault();
     const commentInput = e.target.querySelector('.commentFormInput');
@@ -116,11 +124,8 @@
                   required
                 />
                 <div class="commentFormButtons">
-                  <button
-                    class="cancelButton"
-                    onclick={() => {
-                      document.querySelector('.commentInput').value = '';
-                    }}>Cancel</button
+                  <button class="cancelButton" onclick={clearComment}
+                    >Cancel</button
                   >
                   <button type="submit" class="submitButton"> Submit </button>
                 </div>
